@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>My Page</title>
     <!-- استدعاء الخطوط -->
@@ -15,19 +16,24 @@
             outline: none;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Tajawal', 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* خلفية متناسقة وانسيابية مريحة للعين بدون تدرج حاد */
+            /* خلفية ناعمة جداً وانسيابية بدون اختلاف درجات على الجوانب */
             background: linear-gradient(180deg, #ffb6c1 0%, #fecfef 50%, #ffa3b5 100%);
             background-attachment: fixed;
             color: #fff;
-            overflow-x: hidden;
             position: relative;
-            padding: 20px 10px;
+            padding: 20px 12px;
         }
 
         /* حاوية القلوب الخلفية */
@@ -66,15 +72,15 @@
                 opacity: 0;
             }
             20% {
-                opacity: 0.8;
-                transform: translateY(-25vh) translateX(var(--drift)) scale(0.8) rotate(45deg);
+                opacity: 0.85;
+                transform: translateY(-25vh) translateX(var(--drift)) scale(0.85) rotate(45deg);
             }
             50% {
                 transform: translateY(-55vh) translateX(calc(var(--drift) * -1)) scale(1) rotate(90deg);
             }
             80% {
-                opacity: 0.8;
-                transform: translateY(-85vh) translateX(var(--drift)) scale(0.9) rotate(135deg);
+                opacity: 0.85;
+                transform: translateY(-85vh) translateX(var(--drift)) scale(0.95) rotate(135deg);
             }
             100% {
                 transform: translateY(-115vh) translateX(0) scale(1.1) rotate(180deg);
@@ -82,15 +88,15 @@
             }
         }
 
-        /* الحاوية الرئيسية */
+        /* الحاوية الرئيسية لتوسيط محتوى الصفحة بالكامل */
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             background: rgba(255, 255, 255, 0.22);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.35);
-            padding: 25px 20px;
+            padding: 30px 20px;
             border-radius: 25px;
             box-shadow: 0 8px 25px rgba(219, 112, 147, 0.2);
             text-align: center;
@@ -101,22 +107,35 @@
         #password-page { display: block; }
         #content-page { display: none; }
 
-        /* تكبير كلمة Ömrüm وحذف أي خطوط أو عناوين فرعية وتحتها */
-        .main-title {
+        /* تعديلات العنوان الرئيسي */
+        h1 {
             color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            font-size: 42px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        /* تكبير النص تحت كلمة Ömrüm وإلغاء أي خطوط فاصلة */
+        .sub-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 22px;
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            opacity: 0.98;
+            border: none;
+            padding: 0;
         }
 
         /* خانات إدخال كلمة السر */
         .otp-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 6px;
-            margin: 20px 0;
+            margin: 22px 0;
             direction: ltr;
         }
 
@@ -163,7 +182,7 @@
             margin-top: 15px;
             display: none;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             padding: 8px;
             border-radius: 10px;
         }
@@ -194,7 +213,7 @@
             direction: ltr;
         }
 
-        /* معرض الصور بالسحب */
+        /* معرض الصور بالسحب من اليمين للشمال */
         .slider-wrapper {
             position: relative;
             width: 100%;
@@ -214,7 +233,7 @@
 
         @keyframes pulse {
             0%, 100% { opacity: 0.6; transform: translateX(0); }
-            50% { opacity: 1; transform: translateX(4px); }
+            50% { opacity: 1; transform: translateX(-4px); }
         }
 
         .slider-container {
@@ -224,7 +243,7 @@
             gap: 12px;
             padding: 10px 5px;
             -webkit-overflow-scrolling: touch;
-            direction: ltr;
+            direction: rtl; /* ضبط الاتجاه ليصبح من اليمين إلى الشمال */
         }
 
         .slider-container::-webkit-scrollbar { display: none; }
@@ -283,7 +302,8 @@
         
         <!-- الصفحة الأولى (كلمة السر) -->
         <div id="password-page">
-            <h1 class="main-title">Ömrüm</h1>
+            <h1>Ömrüm</h1>
+            <div class="sub-title">Your other world 🌏❤️</div>
             
             <div class="otp-container">
                 <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
@@ -310,9 +330,9 @@
 
             <div class="section-title">Our Beautiful Memories</div>
 
-            <!-- قسم الصور مع 6 صور -->
+            <!-- قسم الصور للسحب من اليمين للشمال -->
             <div class="slider-wrapper">
-                <div class="swipe-hint">➡️ اسحبي للشمال ➡️</div>
+                <div class="swipe-hint">⬅️ اسحبي لليمين ⬅️</div>
                 <div class="slider-container">
                     <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
                     <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
@@ -350,7 +370,7 @@
     </div>
 
     <script>
-        // 1. توليد القلوب الخلفية وتحريكها أفقياً ورأسياً
+        // 1. القلوب المتحركة بعشوائية أفقية ورأسية
         const heartsContainer = document.getElementById('hearts-container');
         const heartCount = 25;
 
@@ -358,11 +378,11 @@
             const heart = document.createElement('div');
             heart.className = 'heart';
             
-            const size = Math.floor(Math.random() * 18) + 16; 
+            const size = Math.floor(Math.random() * 20) + 16; 
             const left = Math.random() * 95; 
-            const duration = Math.random() * 7 + 8; // سرعة الحركة بين 8 و 15 ثانية
-            const delay = Math.random() * 8; 
-            const drift = (Math.random() - 0.5) * 80; // الانحراف الأفقي العشوائي px
+            const duration = Math.random() * 6 + 8; // سرعة الحركة بين 8 إلى 14 ثانية
+            const delay = Math.random() * 7; 
+            const drift = (Math.random() - 0.5) * 90; // مسافة الانحراف الأفقي px
 
             heart.style.left = `${left}%`;
             heart.style.width = `${size}px`;
@@ -379,7 +399,7 @@
             heartsContainer.appendChild(heart);
         }
 
-        // 2. إدارة كلمة السر والـ OTP
+        // 2. التحكم في إدخال كلمة السر والـ OTP
         const correctPassword = "23112024"; 
         const inputs = document.querySelectorAll('.otp-input');
 
