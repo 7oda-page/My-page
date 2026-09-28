@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>My Page</title>
     <!-- استدعاء الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             box-sizing: border-box;
@@ -14,6 +17,7 @@
             padding: 0;
             border: none;
             outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html, body {
@@ -23,12 +27,12 @@
         }
 
         body {
-            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
+            min-height: -webkit-fill-available; /* دعم ملء الشاشة لشاشات الآيفون مع سفاري */
             display: flex;
             justify-content: center;
             align-items: center;
-            /* خلفية ناعمة جداً وانسيابية بدون اختلاف درجات على الجوانب */
             background: linear-gradient(180deg, #ffb6c1 0%, #fecfef 50%, #ffa3b5 100%);
             background-attachment: fixed;
             color: #fff;
@@ -54,6 +58,7 @@
             animation: floatRandom linear infinite;
             pointer-events: none;
             user-select: none;
+            -webkit-user-select: none;
         }
 
         .heart svg {
@@ -63,9 +68,10 @@
             stroke: rgba(255, 255, 255, 0.75);
             stroke-width: 2;
             filter: drop-shadow(0px 0px 5px rgba(255, 105, 180, 0.4));
+            -webkit-filter: drop-shadow(0px 0px 5px rgba(255, 105, 180, 0.4));
         }
 
-        /* حركة القلوب بشكل عشوائي أفقياً ورأسياً مع الدوران */
+        /* حركة القلوب عشوائياً */
         @keyframes floatRandom {
             0% {
                 transform: translateY(0) translateX(0) scale(0.6) rotate(0deg);
@@ -93,8 +99,8 @@
             width: 100%;
             max-width: 400px;
             background: rgba(255, 255, 255, 0.22);
-            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.35);
             padding: 30px 20px;
             border-radius: 25px;
@@ -117,7 +123,6 @@
             line-height: 1.2;
         }
 
-        /* تكبير النص تحت كلمة Ömrüm وإلغاء أي خطوط فاصلة */
         .sub-title {
             font-size: 20px;
             font-weight: 500;
@@ -147,11 +152,13 @@
             font-weight: bold;
             border: 1.5px solid rgba(255, 255, 255, 0.6);
             background: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
             border-radius: 10px;
             color: #333;
             transition: all 0.2s ease;
             -webkit-appearance: none;
+            appearance: none;
         }
 
         .otp-input:focus {
@@ -190,6 +197,7 @@
         /* الملاحظات والنصوص */
         .note {
             background: rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 20px;
@@ -243,7 +251,7 @@
             gap: 12px;
             padding: 10px 5px;
             -webkit-overflow-scrolling: touch;
-            direction: rtl; /* ضبط الاتجاه ليصبح من اليمين إلى الشمال */
+            direction: rtl;
         }
 
         .slider-container::-webkit-scrollbar { display: none; }
@@ -252,6 +260,7 @@
             flex: 0 0 88%;
             scroll-snap-align: center;
             background: rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 18px;
@@ -269,6 +278,7 @@
 
         .media-card {
             background: rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 18px;
@@ -282,7 +292,7 @@
             border-radius: 12px;
             display: block;
             object-fit: cover;
-            background: transparent;
+            background: #000;
         }
 
         audio {
@@ -306,7 +316,7 @@
             <div class="sub-title">Your other world 🌏❤️</div>
             
             <div class="otp-container">
-                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric" autocomplete="one-time-code">
                 <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
                 <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
                 <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
@@ -334,26 +344,28 @@
             <div class="slider-wrapper">
                 <div class="swipe-hint">⬅️ اسحبي لليمين ⬅️</div>
                 <div class="slider-container">
-                    <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
-                    <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
-                    <div class="card"><img src="F3.JPG" alt="صورة 3"></div>
-                    <div class="card"><img src="F4.JPG" alt="صورة 4"></div>
-                    <div class="card"><img src="F5.JPG" alt="صورة 5"></div>
-                    <div class="card"><img src="F6.JPG" alt="صورة 6"></div>
+                    <div class="card"><img src="f1.jpg" alt="صورة 1"></div>
+                    <div class="card"><img src="f2.jpg" alt="صورة 2"></div>
+                    <div class="card"><img src="f3.jpg" alt="صورة 3"></div>
+                    <div class="card"><img src="f4.jpg" alt="صورة 4"></div>
+                    <div class="card"><img src="f5.jpg" alt="صورة 5"></div>
+                    <div class="card"><img src="f6.jpg" alt="صورة 6"></div>
                 </div>
             </div>
 
             <div class="section-title">Special Video</div>
             <div class="media-card">
-                <video controls preload="metadata" playsinline>
-                    <source src="V1.MP4" type="video/mp4">
+                <video controls preload="metadata" playsinline webkit-playsinline>
+                    <source src="v1.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
                 </video>
             </div>
 
             <div class="section-title">Something I only feel with you 💕</div>
             <div class="media-card">
                 <audio controls preload="metadata">
-                    <source src="S1.MP3" type="audio/mpeg">
+                    <source src="s1.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
                 </audio>
             </div>
 
@@ -372,7 +384,7 @@
     <script>
         // 1. القلوب المتحركة بعشوائية أفقية ورأسية
         const heartsContainer = document.getElementById('hearts-container');
-        const heartCount = 25;
+        const heartCount = 20;
 
         for (let i = 0; i < heartCount; i++) {
             const heart = document.createElement('div');
@@ -380,9 +392,9 @@
             
             const size = Math.floor(Math.random() * 20) + 16; 
             const left = Math.random() * 95; 
-            const duration = Math.random() * 6 + 8; // سرعة الحركة بين 8 إلى 14 ثانية
+            const duration = Math.random() * 6 + 8;
             const delay = Math.random() * 7; 
-            const drift = (Math.random() - 0.5) * 90; // مسافة الانحراف الأفقي px
+            const drift = (Math.random() - 0.5) * 80;
 
             heart.style.left = `${left}%`;
             heart.style.width = `${size}px`;
@@ -404,9 +416,12 @@
         const inputs = document.querySelectorAll('.otp-input');
 
         inputs.forEach((input, index) => {
-            input.addEventListener('input', () => {
-                if (input.value.length === 1 && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
+            input.addEventListener('input', (e) => {
+                if (input.value.length >= 1) {
+                    input.value = input.value.slice(-1);
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
                 }
             });
 
@@ -422,7 +437,7 @@
 
             input.addEventListener('paste', (e) => {
                 e.preventDefault();
-                const pastedData = e.clipboardData.getData('text').trim();
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text').trim();
                 if (pastedData.length === inputs.length) {
                     pastedData.split('').forEach((char, i) => {
                         if (inputs[i]) inputs[i].value = char;
