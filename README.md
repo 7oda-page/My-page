@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ömrüm</title>
+    <title>My Page</title>
     <!-- استدعاء الخطوط -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -11,12 +11,8 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
+            border: none;
+            outline: none;
         }
 
         body {
@@ -25,9 +21,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            /* خلفية متناسقة وانسيابية مريحة للعين بدون تدرج حاد */
+            background: linear-gradient(180deg, #ffb6c1 0%, #fecfef 50%, #ffa3b5 100%);
             background-attachment: fixed;
             color: #fff;
+            overflow-x: hidden;
             position: relative;
             padding: 20px 10px;
         }
@@ -46,8 +44,8 @@
 
         .heart {
             position: absolute;
-            bottom: -80px;
-            animation: floatAndSway linear infinite;
+            bottom: -60px;
+            animation: floatRandom linear infinite;
             pointer-events: none;
             user-select: none;
         }
@@ -56,28 +54,30 @@
             width: 100%;
             height: 100%;
             fill: none;
-            stroke: rgba(255, 255, 255, 0.85);
-            stroke-width: 2.5;
-            filter: drop-shadow(0px 0px 8px rgba(255, 105, 180, 0.6));
+            stroke: rgba(255, 255, 255, 0.75);
+            stroke-width: 2;
+            filter: drop-shadow(0px 0px 5px rgba(255, 105, 180, 0.4));
         }
 
-        /* حركة القلوب الرأسية والأفقية العشوائية */
-        @keyframes floatAndSway {
+        /* حركة القلوب بشكل عشوائي أفقياً ورأسياً مع الدوران */
+        @keyframes floatRandom {
             0% {
-                transform: translateY(0) translateX(0) scale(0.8) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(0.6) rotate(0deg);
                 opacity: 0;
             }
             20% {
-                opacity: 0.9;
+                opacity: 0.8;
+                transform: translateY(-25vh) translateX(var(--drift)) scale(0.8) rotate(45deg);
             }
             50% {
-                transform: translateY(-60vh) translateX(35px) scale(1.1) rotate(90deg);
+                transform: translateY(-55vh) translateX(calc(var(--drift) * -1)) scale(1) rotate(90deg);
             }
             80% {
-                opacity: 0.9;
+                opacity: 0.8;
+                transform: translateY(-85vh) translateX(var(--drift)) scale(0.9) rotate(135deg);
             }
             100% {
-                transform: translateY(-120vh) translateX(-35px) scale(1.3) rotate(180deg);
+                transform: translateY(-115vh) translateX(0) scale(1.1) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -86,13 +86,13 @@
         .container {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             padding: 25px 20px;
             border-radius: 25px;
-            box-shadow: 0 8px 32px 0 rgba(219, 112, 147, 0.3);
+            box-shadow: 0 8px 25px rgba(219, 112, 147, 0.2);
             text-align: center;
             z-index: 2;
             margin: auto;
@@ -101,30 +101,27 @@
         #password-page { display: block; }
         #content-page { display: none; }
 
-        h1 {
+        /* تكبير كلمة Ömrüm وحذف أي خطوط أو عناوين فرعية وتحتها */
+        .main-title {
             color: #ffffff;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.15);
-            margin-bottom: 5px;
-            font-size: 28px;
-        }
-
-        .sub-title {
-            font-size: 16px;
-            margin-bottom: 15px;
-            opacity: 0.95;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
         /* خانات إدخال كلمة السر */
         .otp-container {
             display: flex;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
             margin: 20px 0;
             direction: ltr;
         }
 
         .otp-input {
-            width: 36px;
+            width: 38px;
             height: 48px;
             text-align: center;
             font-size: 20px;
@@ -134,7 +131,6 @@
             backdrop-filter: blur(5px);
             border-radius: 10px;
             color: #333;
-            outline: none;
             transition: all 0.2s ease;
             -webkit-appearance: none;
         }
@@ -148,7 +144,6 @@
         .enter-btn {
             background: linear-gradient(45deg, #ff6b81, #ff4757);
             color: white;
-            border: none;
             padding: 12px 30px;
             border-radius: 25px;
             font-size: 18px;
@@ -168,18 +163,19 @@
             margin-top: 15px;
             display: none;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             padding: 8px;
             border-radius: 10px;
         }
 
+        /* الملاحظات والنصوص */
         .note {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 20px;
             border-radius: 18px;
-            font-size: 19px;
+            font-size: 18px;
             line-height: 1.7;
             margin: 20px auto;
             text-align: right;
@@ -198,7 +194,7 @@
             direction: ltr;
         }
 
-        /* حاوية الصور والتأثير الدال على السحب */
+        /* معرض الصور بالسحب */
         .slider-wrapper {
             position: relative;
             width: 100%;
@@ -218,7 +214,7 @@
 
         @keyframes pulse {
             0%, 100% { opacity: 0.6; transform: translateX(0); }
-            50% { opacity: 1; transform: translateX(-4px); }
+            50% { opacity: 1; transform: translateX(4px); }
         }
 
         .slider-container {
@@ -228,6 +224,7 @@
             gap: 12px;
             padding: 10px 5px;
             -webkit-overflow-scrolling: touch;
+            direction: ltr;
         }
 
         .slider-container::-webkit-scrollbar { display: none; }
@@ -245,7 +242,7 @@
 
         .card img {
             width: 100%;
-            max-height: 380px;
+            height: 380px;
             object-fit: cover;
             border-radius: 12px;
             display: block;
@@ -262,11 +259,11 @@
 
         .media-card video {
             width: 100%;
-            max-height: 280px;
+            max-height: 320px;
             border-radius: 12px;
-            outline: none;
             display: block;
             object-fit: cover;
+            background: transparent;
         }
 
         audio {
@@ -286,8 +283,7 @@
         
         <!-- الصفحة الأولى (كلمة السر) -->
         <div id="password-page">
-            <h1>Ömrüm</h1>
-            <div class="sub-title">Your other world 🌏❤️</div>
+            <h1 class="main-title">Ömrüm</h1>
             
             <div class="otp-container">
                 <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
@@ -314,9 +310,9 @@
 
             <div class="section-title">Our Beautiful Memories</div>
 
-            <!-- قسم الصور مع مؤشر السحب الجانبي (6 صور) -->
+            <!-- قسم الصور مع 6 صور -->
             <div class="slider-wrapper">
-                <div class="swipe-hint">⬅️⬅️ اسحبي لرؤية باقي الصور</div>
+                <div class="swipe-hint">➡️ اسحبي للشمال ➡️</div>
                 <div class="slider-container">
                     <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
                     <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
@@ -354,25 +350,26 @@
     </div>
 
     <script>
-        // 1. القلوب الكبيرة والمتحركة عشوائياً (أفقياً ورأسياً)
+        // 1. توليد القلوب الخلفية وتحريكها أفقياً ورأسياً
         const heartsContainer = document.getElementById('hearts-container');
-        const heartCount = 22;
+        const heartCount = 25;
 
         for (let i = 0; i < heartCount; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             
-            // أحجام أكبر للقلوب (بين 28px إلى 48px)
-            const size = Math.floor(Math.random() * 20) + 28; 
+            const size = Math.floor(Math.random() * 18) + 16; 
             const left = Math.random() * 95; 
-            const duration = Math.random() * 5 + 8; // سرعة متوازنة
-            const delay = Math.random() * 5; 
+            const duration = Math.random() * 7 + 8; // سرعة الحركة بين 8 و 15 ثانية
+            const delay = Math.random() * 8; 
+            const drift = (Math.random() - 0.5) * 80; // الانحراف الأفقي العشوائي px
 
             heart.style.left = `${left}%`;
             heart.style.width = `${size}px`;
             heart.style.height = `${size}px`;
             heart.style.animationDuration = `${duration}s`;
             heart.style.animationDelay = `${delay}s`;
+            heart.style.setProperty('--drift', `${drift}px`);
 
             heart.innerHTML = `
                 <svg viewBox="0 0 24 24">
@@ -382,7 +379,7 @@
             heartsContainer.appendChild(heart);
         }
 
-        // 2. الانتقال بين خانات الباسورد
+        // 2. إدارة كلمة السر والـ OTP
         const correctPassword = "23112024"; 
         const inputs = document.querySelectorAll('.otp-input');
 
@@ -394,10 +391,23 @@
             });
 
             input.addEventListener('keydown', (e) => {
-                if (e.key === "Backspace" && input.value === "" && index > 0) {
-                    inputs[index - 1].focus();
+                if (e.key === "Backspace") {
+                    if (input.value === "" && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                } else if (e.key === "Enter") {
+                    checkPassword();
                 }
-                if (e.key === "Enter") {
+            });
+
+            input.addEventListener('paste', (e) => {
+                e.preventDefault();
+                const pastedData = e.clipboardData.getData('text').trim();
+                if (pastedData.length === inputs.length) {
+                    pastedData.split('').forEach((char, i) => {
+                        if (inputs[i]) inputs[i].value = char;
+                    });
+                    inputs[inputs.length - 1].focus();
                     checkPassword();
                 }
             });
