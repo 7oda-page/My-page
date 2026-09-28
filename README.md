@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <title> Ömrüm </title>
     <style>
-        /* خلفية تدرج ألوان متحركة */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -26,11 +25,10 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* حاوية الصفحات */
         .container {
             width: 100%;
             max-width: 450px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 25px;
             border-radius: 20px;
@@ -39,19 +37,24 @@
             box-sizing: border-box;
         }
 
-        /* الصفحة الأولى: كلمة السر */
         #password-page {
             display: block;
         }
 
-        /* الصفحة الثانية: المحتوى (مخفية افتراضياً) */
         #content-page {
             display: none;
         }
 
-        h1, h2 {
+        h1 {
             color: #2c3e50;
             margin-top: 0;
+            font-size: 28px;
+        }
+
+        h2 {
+            color: #ff4d6d;
+            font-size: 22px;
+            margin-bottom: 20px;
         }
 
         .input-field {
@@ -98,34 +101,64 @@
         }
 
         .note {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             padding: 12px;
             border-radius: 12px;
             font-size: 14px;
             line-height: 1.6;
-            margin-top: 15px;
+            margin: 15px 0;
             border-right: 4px solid #ff4d6d;
+            text-align: right;
         }
 
         .section-title {
             color: #ff4d6d;
             font-size: 18px;
-            margin: 25px 0 15px 0;
+            margin: 20px 0 10px 0;
             font-weight: bold;
         }
 
+        /* معرض الصور الأفقي (سحب بالجنب) */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .slider-container::-webkit-scrollbar-thumb {
+            background: #ff4d6d;
+            border-radius: 10px;
+        }
+
         .card {
+            flex: 0 0 85%;
+            scroll-snap-align: center;
             background: white;
             border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 15px;
+            padding: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-sizing: border-box;
         }
 
         .card img, .card video {
             width: 100%;
             border-radius: 8px;
             display: block;
+        }
+
+        .media-card {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         audio {
@@ -138,61 +171,64 @@
 
     <div class="container">
         
-        <!-- ================= الصفحة الأولى (كلمة السر) ================= -->
+        <!-- ================= الصفحة الأولى (الباسورد) ================= -->
         <div id="password-page">
-            <h1>My-page</h1>
-            <h2>Password code</h2>
+            <h1> Ömrüm </h1>
+            <h2>Happy birthday 🥳 </h2>
             
-            <!-- خانة ادخال كلمة السر -->
-            <input type="password" id="passInput" class="input-field" placeholder="أدخل كلمة السر هنا...">
+            <input type="password" id="passInput" class="input-field" placeholder="Type your password…">
             <br>
             <button class="enter-btn" onclick="checkPassword()">Enter</button>
             
-            <p id="errorText" class="error-msg">❌ كلمة السر غير صحيحة، حاول مرة أخرى!</p>
+            <p id="errorText" class="error-msg">غلط ي روحييي ركزيي شويهه 💋</p>
+        </div>
 
+        <!-- ================= الصفحة الثانية (المحتوى) ================= -->
+        <div id="content-page">
+            
+            <!-- الملاحظة الأولى نُقلت هنا -->
             <div class="note">
                 🥖 <b>ملاحظة أولى:</b> كتبتلك الكلام ده عشان أفتكرك دايماً إنك أجمل حاجة حصلت في حياتي.. بحبك أوي ❤️
             </div>
-        </div>
 
-        <!-- ================= الصفحة الثانية (المحتوى الخاص) ================= -->
-        <div id="content-page">
             <div class="section-title">🔒❤️ Our Beautiful memories</div>
 
-            <!-- الصور -->
-            <div class="card">
-                <h3>صورة 1</h3>
-                <img src="F1.JPG" alt="صورة 1">
-            </div>
+            <!-- معرض الصور المتنقل بالجنب -->
+            <div class="slider-container">
+                <div class="card">
+                    <h3></h3>
+                    <img src="F1.JPG" alt="صورة 1">
+                </div>
 
-            <div class="card">
-                <h3>صورة 2</h3>
-                <img src="F2.jpg" alt="صورة 2">
-            </div>
+                <div class="card">
+                    <h3></h3>
+                    <img src="F2.JPG" alt="صورة 2">
+                </div>
 
-            <div class="card">
-                <h3>صورة 3</h3>
-                <img src="F3.jpg" alt="صورة 3">
-            </div>
+                <div class="card">
+                    <h3></h3>
+                    <img src="F3.JPG" alt="صورة 3">
+                </div>
 
-            <div class="card">
-                <h3>صورة 4</h3>
-                <img src="F4.jpg" alt="صورة 4">
+                <div class="card">
+                    <h3></h3>
+                    <img src="F4.JPG" alt="صورة 4">
+                </div>
             </div>
 
             <!-- الفيديو -->
             <div class="section-title">🖤 Special video</div>
-            <div class="card">
+            <div class="media-card">
                 <video controls>
-                    <source src="V1.mp4" type="video/mp4">
+                    <source src="V1.MP4" type="video/mp4">
                 </video>
             </div>
 
             <!-- الصوت -->
             <div class="section-title">🎼 The best song</div>
-            <div class="card">
+            <div class="media-card">
                 <audio controls>
-                    <source src="S1.mp3" type="audio/mpeg">
+                    <source src="S1.m4a" type="audio/mpeg">
                 </audio>
                 <div class="note">
                     ❤️ <b>ملاحظة إضافية:</b> كل ما أسمع الأغنية دي بفكرك كل لحظة حلوة جمعتنا.. ربنا يديمك في حياتي يا رب 🥳
@@ -202,21 +238,18 @@
 
     </div>
 
-    <!-- برمجة التحقق من كلمة السر -->
     <script>
         function checkPassword() {
-            // حدد كلمة السر المطلوبة هنا (مثلاً: 1234)
+            // اكتب كلمة السر الخاصة بك هنا
             const correctPassword = "23122024"; 
             
             const userEntered = document.getElementById("passInput").value;
             const errorText = document.getElementById("errorText");
 
             if (userEntered === correctPassword) {
-                // إذا كانت صحيحة: إخفاء صفحة الباسورد وإظهار صفحة المحتوى
                 document.getElementById("password-page").style.display = "none";
                 document.getElementById("content-page").style.display = "block";
             } else {
-                // إذا كانت خطأ: إظهار رسالة الخطأ
                 errorText.style.display = "block";
             }
         }
