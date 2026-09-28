@@ -2,87 +2,90 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ömrüm</title>
-    <!-- استدعاء خط رومانسي أنيق مشابه للخط في الصورة -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- استدعاء خط رومانسي أنيق -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px 10px;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
             color: #fff;
             overflow-x: hidden;
             position: relative;
-            box-sizing: border-box;
+            padding: 20px 10px;
         }
 
-        /* خلفية القلوب المتساقطة والعشوائية */
-        .heart {
+        /* حاوية القلوب الخلفية */
+        #hearts-container {
             position: fixed;
-            bottom: -60px;
-            color: rgba(255, 182, 193, 0.65);
-            font-size: 24px;
-            animation: floatUp 7s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -60px;
+            animation: floatUp 7s linear infinite;
             pointer-events: none;
             user-select: none;
         }
 
-        /* رسم القلب المفرغ بالـ SVG */
         .heart svg {
-            width: 40px;
-            height: 40px;
+            width: 100%;
+            height: 100%;
             fill: none;
-            stroke: rgba(255, 255, 255, 0.7);
-            stroke-width: 2.5;
-            filter: drop-shadow(0px 0px 6px rgba(255, 105, 180, 0.6));
+            stroke: rgba(255, 255, 255, 0.75);
+            stroke-width: 2;
+            filter: drop-shadow(0px 0px 8px rgba(255, 105, 180, 0.6));
         }
 
         @keyframes floatUp {
             0% {
-                transform: translateY(0) scale(0.6) rotate(0deg);
+                transform: translateY(0) scale(0.5) rotate(0deg);
                 opacity: 0;
             }
-            20% {
-                opacity: 0.8;
+            15% {
+                opacity: 0.85;
+            }
+            85% {
+                opacity: 0.85;
             }
             100% {
-                transform: translateY(-115vh) scale(1.3) rotate(360deg);
+                transform: translateY(-115vh) scale(1.2) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* توقيت وأماكن عشوائية للقلوب */
-        .heart:nth-child(1)  { left: 5%;  animation-duration: 6s;  animation-delay: 0s; }
-        .heart:nth-child(2)  { left: 15%; animation-duration: 9s;  animation-delay: 2s; }
-        .heart:nth-child(3)  { left: 25%; animation-duration: 7s;  animation-delay: 4s; }
-        .heart:nth-child(4)  { left: 35%; animation-duration: 8s;  animation-delay: 1s; }
-        .heart:nth-child(5)  { left: 45%; animation-duration: 10s; animation-delay: 3s; }
-        .heart:nth-child(6)  { left: 55%; animation-duration: 6.5s;animation-delay: 5s; }
-        .heart:nth-child(7)  { left: 65%; animation-duration: 8.5s;animation-delay: 2.5s;}
-        .heart:nth-child(8)  { left: 75%; animation-duration: 7.5s;animation-delay: 0.5s;}
-        .heart:nth-child(9)  { left: 85%; animation-duration: 9.5s;animation-delay: 3.5s;}
-        .heart:nth-child(10) { left: 95%; animation-duration: 6s;  animation-delay: 1.5s;}
-
+        /* الحاوية الرئيسية */
         .container {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 25px 20px;
             border-radius: 25px;
             box-shadow: 0 8px 32px 0 rgba(219, 112, 147, 0.3);
             text-align: center;
-            box-sizing: border-box;
             z-index: 2;
+            transition: all 0.4s ease-in-out;
         }
 
         #password-page { display: block; }
@@ -90,46 +93,47 @@
 
         h1 {
             color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-            margin: 0 0 10px 0;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            margin-bottom: 8px;
             font-size: 28px;
         }
 
-        h2 {
-            color: #fff;
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .sub-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            opacity: 0.9;
         }
 
-        /* تنسيق الـ 8 خانات لكلمة السر */
+        /* خانات إدخال الرقم السرّي */
         .otp-container {
             display: flex;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
             margin: 20px 0;
             direction: ltr;
         }
 
         .otp-input {
-            width: 35px;
-            height: 45px;
+            width: 36px;
+            height: 48px;
             text-align: center;
             font-size: 20px;
             font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.35);
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(5px);
             border-radius: 10px;
-            color: #4a4a4a;
+            color: #333;
             outline: none;
             transition: all 0.2s ease;
+            -webkit-appearance: none;
         }
 
         .otp-input:focus {
             border-color: #ff4757;
-            background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 8px rgba(255, 71, 87, 0.5);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+            transform: scale(1.05);
         }
 
         .enter-btn {
@@ -143,46 +147,44 @@
             cursor: pointer;
             width: 85%;
             box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-            transition: 0.3s;
+            transition: 0.3s ease;
             margin-top: 10px;
         }
 
-        .enter-btn:active { transform: scale(0.97); }
+        .enter-btn:active { transform: scale(0.95); }
 
         .error-msg {
-            color: #ff3838;
+            color: #ff2a2a;
             font-size: 14px;
             margin-top: 15px;
             display: none;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 8px;
             border-radius: 10px;
         }
 
         .note {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 18px;
             border-radius: 18px;
-            font-size: 20px;
+            font-size: 16px;
             line-height: 1.6;
             margin: 20px auto;
-            text-align: center;
+            text-align: right;
             color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* تنسيق العناوين بخط رومانسي مزخرف */
         .section-title {
             font-family: 'Great Vibes', cursive;
             color: #ffffff;
             font-size: 34px;
             margin: 25px 0 10px 0;
-            text-shadow: 0 2px 5px rgba(255, 105, 180, 0.5), 0 2px 4px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(255, 105, 180, 0.5);
             direction: ltr;
         }
 
@@ -192,7 +194,7 @@
             scroll-snap-type: x mandatory;
             gap: 15px;
             padding: 10px 0;
-            justify-content: flex-start;
+            -webkit-overflow-scrolling: touch;
         }
 
         .slider-container::-webkit-scrollbar { display: none; }
@@ -200,39 +202,37 @@
         .card {
             flex: 0 0 100%;
             scroll-snap-align: center;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 18px;
-            padding: 12px;
+            padding: 10px;
             box-sizing: border-box;
         }
 
         .card img {
             width: 100%;
-            max-height: 350px;
+            max-height: 380px;
             object-fit: cover;
             border-radius: 12px;
             display: block;
         }
 
         .media-card {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 18px;
-            padding: 15px;
+            padding: 12px;
             margin-bottom: 20px;
-            box-sizing: border-box;
         }
 
         .media-card video {
             width: 100%;
-            max-height: 250px;
+            max-height: 280px;
             border-radius: 12px;
             outline: none;
             display: block;
-            margin: 0 auto;
             object-fit: cover;
         }
 
@@ -246,48 +246,37 @@
 </head>
 <body>
 
-    <!-- عناصر القلوب المفرغة الرومانسية -->
-    <script>
-        // توليد القلوب الديناميكية المفرغة
-        for(let i=0; i<10; i++) {
-            document.write(`
-                <div class="heart">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                </div>
-            `);
-        }
-    </script>
+    <!-- حاوية القلوب خلفية متساقطة بشكل عشوائي -->
+    <div id="hearts-container"></div>
 
     <div class="container">
         
         <!-- الصفحة الأولى (صفحة كلمة السر) -->
         <div id="password-page">
             <h1>Ömrüm</h1>
-            <h2>Happy birthday</h2>
+            <div class="sub-title">Your other world 🌏❤️</div>
             
-            <!-- 8 خانات لإدخال 8 أرقام -->
             <div class="otp-container">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 1)" onkeydown="moveBack(event, this, 1)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 2)" onkeydown="moveBack(event, this, 2)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 3)" onkeydown="moveBack(event, this, 3)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 4)" onkeydown="moveBack(event, this, 4)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 5)" onkeydown="moveBack(event, this, 5)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 6)" onkeydown="moveBack(event, this, 6)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 7)" onkeydown="moveBack(event, this, 7)">
-                <input type="password" maxlength="1" class="otp-input" oninput="moveNext(this, 8)" onkeydown="moveBack(event, this, 8)">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
+                <input type="tel" maxlength="1" class="otp-input" pattern="[0-9]*" inputmode="numeric">
             </div>
 
             <button class="enter-btn" onclick="checkPassword()">Enter</button>
-            <p id="errorText" class="error-msg">❌ كلمة السر غير صحيحة!</p>
+            <p id="errorText" class="error-msg">غلط ي روحيي ركزيي اكتر 🌚</p>
         </div>
 
         <!-- الصفحة الثانية (المحتوى) -->
         <div id="content-page">
             
             <div class="note">
-                🥖 <b>ملاحظة أولى:</b><br>كتبتك الكلام ده عشان أفتكرك دايماً إنك أجمل حاجة حصلت في حياتي.. بحبك أوي ❤️
+                Happy birthday ya 7abiby ❤️✨<br>
+                عيد ميلاد سعيد و عقبال العمر كله و إن شاء الله تكون سنه سعيده عليكي و تبقا بدايه قصه جديده ليكي ❤️
             </div>
 
             <div class="section-title">Our Beautiful Memories</div>
@@ -301,12 +290,12 @@
 
             <div class="section-title">Special Video</div>
             <div class="media-card">
-                <video controls preload="metadata">
+                <video controls preload="metadata" playsinline>
                     <source src="V1.MP4" type="video/mp4">
                 </video>
             </div>
 
-            <div class="section-title">The Best Song</div>
+            <div class="section-title">Something I only feel with you 💕</div>
             <div class="media-card">
                 <audio controls preload="metadata">
                     <source src="S1.MP3" type="audio/mpeg">
@@ -314,7 +303,11 @@
             </div>
 
             <div class="note">
-                ❤️ <b>ملاحظة إضافية:</b><br>كل ما أسمع الأغنية دي بفكرك كل لحظة حلوة جمعتنا.. ربنا يديمك في حياتي يا رب 🥳
+                دي حاجه بسيطه عملتهالك ب إيدي عشان تبقا حاجه مميزه شبهك ❤️<br><br>
+                إن شاء الله اليوم يكون بدايه جديده ليكي و تكون سنه كلهاا سعاده و مفيش حاجه تزعلك خالص ، و بتمنى تكوني اتبسطتي النهارده و تفضلي طول العمر مبسوطه ❤️✨<br><br>
+                الفيديو اللي موجود ده فيه اهم و احلى اللحظات اللي عشناها سوا و لسه فاكر كل لحظه فيها بالتفصيل لحد دلوقتي عشان دي احسن و اصدق فتره كنت مبسوط فيها من كل قلبي و انا معاكي 🔐❤️<br><br>
+                في كلام كتير عايز اقوله بس م عارف اوصلهولك ازاي ، بس عمتا كل اللي بتمناه تفضلي مبسوطه دايما ف حياتك ، و إن الذكريات الحلوه اللي بينا دي متتنسيش ❤️<br><br>
+                كنت بتمنى نبقى مع بعض ف اليوم ده و نحتفلوا بيه سوا بس م عارف اي اللي حصل غير كل ده و كبر المسافه مبينا كد ، و بتمنى السنه الجايه تيجي و احنا مع بعض و نقضوا اليوم ده سوا ❤️✨
             </div>
 
         </div>
@@ -322,22 +315,55 @@
     </div>
 
     <script>
-        // يمكنك تغيير كلمة السر المؤلفة من 8 أرقام هنا
-        const correctPassword = "12345678"; 
+        // 1. توليد القلوب الديناميكية في الخلفية بحركات وأحجام مختلفة
+        const heartsContainer = document.getElementById('hearts-container');
+        const heartCount = 25; // زيادة عدد القلوب
 
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            
+            // أحجام وأماكن وأوقات عشوائية
+            const size = Math.floor(Math.random() * 25) + 20; // حجم بين 20px و 45px
+            const left = Math.random() * 100; // تموضع من 0% إلى 100%
+            const duration = Math.random() * 5 + 5; // سرعة الحركة من 5s إلى 10s
+            const delay = Math.random() * 5; // تأخير الظهور
+
+            heart.style.left = `${left}%`;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.animationDelay = `${delay}s`;
+
+            heart.innerHTML = `
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            `;
+            heartsContainer.appendChild(heart);
+        }
+
+        // 2. التحكم في إدخال كلمة السر والتحويل السلس
+        const correctPassword = "23112024"; 
         const inputs = document.querySelectorAll('.otp-input');
 
-        function moveNext(elem, index) {
-            if (elem.value.length === 1 && index < 8) {
-                inputs[index].focus();
-            }
-        }
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (input.value.length === 1) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        checkPassword(); // التحقق تلقائيًا عند إدخال الرقم الأخيرة
+                    }
+                }
+            });
 
-        function moveBack(event, elem, index) {
-            if (event.key === "Backspace" && elem.value === "" && index > 1) {
-                inputs[index - 2].focus();
-            }
-        }
+            input.addEventListener('keydown', (e) => {
+                if (e.key === "Backspace" && input.value === "" && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
 
         function checkPassword() {
             let userEntered = "";
@@ -350,7 +376,6 @@
                 document.getElementById("content-page").style.display = "block";
             } else {
                 errorText.style.display = "block";
-                // مسح الإدخالات عند الخطأ
                 inputs.forEach(input => input.value = "");
                 inputs[0].focus();
             }
