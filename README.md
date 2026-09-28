@@ -20,19 +20,20 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* تعديل الـ html و body لحل مشكلة الـ scroll والتعليق في سفاري */
         html, body {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
             font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            min-height: -webkit-fill-available; /* دعم ملء الشاشة لشاشات الآيفون مع سفاري */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* التنسيق يبدأ من الأعلى لتفادي عائق الـ Scroll */
             background: linear-gradient(180deg, #ffb6c1 0%, #fecfef 50%, #ffa3b5 100%);
             background-attachment: fixed;
             color: #fff;
@@ -344,27 +345,27 @@
             <div class="slider-wrapper">
                 <div class="swipe-hint">⬅️ اسحبي لليمين ⬅️</div>
                 <div class="slider-container">
-                    <div class="card"><img src="f1.jpg" alt="صورة 1"></div>
-                    <div class="card"><img src="f2.jpg" alt="صورة 2"></div>
-                    <div class="card"><img src="f3.jpg" alt="صورة 3"></div>
-                    <div class="card"><img src="f4.jpg" alt="صورة 4"></div>
-                    <div class="card"><img src="f5.jpg" alt="صورة 5"></div>
-                    <div class="card"><img src="f6.jpg" alt="صورة 6"></div>
+                    <div class="card"><img src="./f1.jpg" alt="صورة 1"></div>
+                    <div class="card"><img src="./f2.jpg" alt="صورة 2"></div>
+                    <div class="card"><img src="./f3.jpg" alt="صورة 3"></div>
+                    <div class="card"><img src="./f4.jpg" alt="صورة 4"></div>
+                    <div class="card"><img src="./f5.jpg" alt="صورة 5"></div>
+                    <div class="card"><img src="./f6.jpg" alt="صورة 6"></div>
                 </div>
             </div>
 
             <div class="section-title">Special Video</div>
             <div class="media-card">
-                <video controls preload="metadata" playsinline webkit-playsinline>
-                    <source src="v1.mp4" type="video/mp4">
+                <video id="myVideo" controls playsinline webkit-playsinline preload="auto">
+                    <source src="./v1.mp4" type="video/mp4">
                     متصفحك لا يدعم تشغيل الفيديو.
                 </video>
             </div>
 
             <div class="section-title">Something I only feel with you 💕</div>
             <div class="media-card">
-                <audio controls preload="metadata">
-                    <source src="s1.mp3" type="audio/mpeg">
+                <audio id="myAudio" controls preload="auto">
+                    <source src="./s1.mp3" type="audio/mpeg">
                     متصفحك لا يدعم تشغيل الصوت.
                 </audio>
             </div>
@@ -457,7 +458,17 @@
             if (userEntered === correctPassword) {
                 document.getElementById("password-page").style.display = "none";
                 document.getElementById("content-page").style.display = "block";
-                window.scrollTo(0, 0);
+                
+                // الانتقال فوراً وألماسياً لقمة الصفحة عند إدخال كلمة السر
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+
+                // إعادة تحميل الميديا للـ Safari
+                const video = document.getElementById('myVideo');
+                const audio = document.getElementById('myAudio');
+                if(video) video.load();
+                if(audio) audio.load();
             } else {
                 errorText.style.display = "block";
                 inputs.forEach(input => input.value = "");
