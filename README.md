@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ömrüm</title>
-    <!-- استدعاء خط رومانسي أنيق -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <!-- استدعاء الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -41,7 +41,7 @@
         .heart {
             position: absolute;
             bottom: -60px;
-            animation: floatUp 7s linear infinite;
+            animation: floatUp linear infinite;
             pointer-events: none;
             user-select: none;
         }
@@ -50,24 +50,25 @@
             width: 100%;
             height: 100%;
             fill: none;
-            stroke: rgba(255, 255, 255, 0.75);
+            stroke: rgba(255, 255, 255, 0.7);
             stroke-width: 2;
-            filter: drop-shadow(0px 0px 8px rgba(255, 105, 180, 0.6));
+            filter: drop-shadow(0px 0px 6px rgba(255, 105, 180, 0.5));
         }
 
+        /* حركة بطيئة وسلسة للقلوب */
         @keyframes floatUp {
             0% {
-                transform: translateY(0) scale(0.5) rotate(0deg);
+                transform: translateY(0) scale(0.6) rotate(0deg);
                 opacity: 0;
             }
-            15% {
-                opacity: 0.85;
+            20% {
+                opacity: 0.8;
             }
-            85% {
-                opacity: 0.85;
+            80% {
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-115vh) scale(1.2) rotate(360deg);
+                transform: translateY(-115vh) scale(1.1) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -85,7 +86,7 @@
             box-shadow: 0 8px 32px 0 rgba(219, 112, 147, 0.3);
             text-align: center;
             z-index: 2;
-            transition: all 0.4s ease-in-out;
+            margin: auto;
         }
 
         #password-page { display: block; }
@@ -94,17 +95,17 @@
         h1 {
             color: #ffffff;
             text-shadow: 0 2px 5px rgba(0,0,0,0.15);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-size: 28px;
         }
 
         .sub-title {
             font-size: 16px;
             margin-bottom: 15px;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
-        /* خانات إدخال الرقم السرّي */
+        /* خانات إدخال كلمة السر */
         .otp-container {
             display: flex;
             justify-content: center;
@@ -131,9 +132,8 @@
 
         .otp-input:focus {
             border-color: #ff4757;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
-            transform: scale(1.05);
         }
 
         .enter-btn {
@@ -155,28 +155,30 @@
 
         .error-msg {
             color: #ff2a2a;
-            font-size: 14px;
+            font-size: 15px;
             margin-top: 15px;
             display: none;
             font-weight: bold;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             padding: 8px;
             border-radius: 10px;
         }
 
+        /* تكبير خط الملاحظات بناءً على طلبك */
         .note {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 18px;
+            padding: 20px;
             border-radius: 18px;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 19px; /* تكبير الخط */
+            line-height: 1.7;
             margin: 20px auto;
             text-align: right;
             color: #fff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.25);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-weight: 500;
         }
 
         .section-title {
@@ -188,25 +190,48 @@
             direction: ltr;
         }
 
+        /* حاوية الصور والتأثير الدال على السحب */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .swipe-hint {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            opacity: 0.9;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(-4px); }
+        }
+
         .slider-container {
             display: flex;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            gap: 15px;
-            padding: 10px 0;
+            gap: 12px;
+            padding: 10px 5px;
             -webkit-overflow-scrolling: touch;
         }
 
         .slider-container::-webkit-scrollbar { display: none; }
 
         .card {
-            flex: 0 0 100%;
+            flex: 0 0 88%; /* إظهار طرف الصورة التالية للتنبيه بالسحب */
             scroll-snap-align: center;
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 18px;
-            padding: 10px;
+            padding: 8px;
             box-sizing: border-box;
         }
 
@@ -246,12 +271,12 @@
 </head>
 <body>
 
-    <!-- حاوية القلوب خلفية متساقطة بشكل عشوائي -->
+    <!-- القلوب المتساقطة في الخلفية -->
     <div id="hearts-container"></div>
 
     <div class="container">
         
-        <!-- الصفحة الأولى (صفحة كلمة السر) -->
+        <!-- الصفحة الأولى (كلمة السر) -->
         <div id="password-page">
             <h1>Ömrüm</h1>
             <div class="sub-title">Your other world 🌏❤️</div>
@@ -271,7 +296,7 @@
             <p id="errorText" class="error-msg">غلط ي روحيي ركزيي اكتر 🌚</p>
         </div>
 
-        <!-- الصفحة الثانية (المحتوى) -->
+        <!-- الصفحة الثانية (المحتوى الرئيسي) -->
         <div id="content-page">
             
             <div class="note">
@@ -281,11 +306,15 @@
 
             <div class="section-title">Our Beautiful Memories</div>
 
-            <div class="slider-container">
-                <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
-                <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
-                <div class="card"><img src="F3.JPG" alt="صورة 3"></div>
-                <div class="card"><img src="F4.JPG" alt="صورة 4"></div>
+            <!-- قسم الصور مع مؤشر السحب الجانبي -->
+            <div class="slider-wrapper">
+                <div class="swipe-hint">👈 اسحبي الشاشات لرؤية باقي الصور 👉</div>
+                <div class="slider-container">
+                    <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
+                    <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
+                    <div class="card"><img src="F3.JPG" alt="صورة 3"></div>
+                    <div class="card"><img src="F4.JPG" alt="صورة 4"></div>
+                </div>
             </div>
 
             <div class="section-title">Special Video</div>
@@ -315,19 +344,18 @@
     </div>
 
     <script>
-        // 1. توليد القلوب الديناميكية في الخلفية بحركات وأحجام مختلفة
+        // 1. القلوب البطئية في الخلفية
         const heartsContainer = document.getElementById('hearts-container');
-        const heartCount = 25; // زيادة عدد القلوب
+        const heartCount = 20;
 
         for (let i = 0; i < heartCount; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             
-            // أحجام وأماكن وأوقات عشوائية
-            const size = Math.floor(Math.random() * 25) + 20; // حجم بين 20px و 45px
-            const left = Math.random() * 100; // تموضع من 0% إلى 100%
-            const duration = Math.random() * 5 + 5; // سرعة الحركة من 5s إلى 10s
-            const delay = Math.random() * 5; // تأخير الظهور
+            const size = Math.floor(Math.random() * 20) + 18; 
+            const left = Math.random() * 95; 
+            const duration = Math.random() * 6 + 10; // حركة بطيئة جدًا بين 10 إلى 16 ثانية
+            const delay = Math.random() * 6; 
 
             heart.style.left = `${left}%`;
             heart.style.width = `${size}px`;
@@ -343,24 +371,24 @@
             heartsContainer.appendChild(heart);
         }
 
-        // 2. التحكم في إدخال كلمة السر والتحويل السلس
+        // 2. الانتقال بين خانات الباسورد
         const correctPassword = "23112024"; 
         const inputs = document.querySelectorAll('.otp-input');
 
         inputs.forEach((input, index) => {
-            input.addEventListener('input', (e) => {
-                if (input.value.length === 1) {
-                    if (index < inputs.length - 1) {
-                        inputs[index + 1].focus();
-                    } else {
-                        checkPassword(); // التحقق تلقائيًا عند إدخال الرقم الأخيرة
-                    }
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
                 }
             });
 
             input.addEventListener('keydown', (e) => {
                 if (e.key === "Backspace" && input.value === "" && index > 0) {
                     inputs[index - 1].focus();
+                }
+                // الضغط على Enter للانتقال
+                if (e.key === "Enter") {
+                    checkPassword();
                 }
             });
         });
@@ -374,6 +402,7 @@
             if (userEntered === correctPassword) {
                 document.getElementById("password-page").style.display = "none";
                 document.getElementById("content-page").style.display = "block";
+                window.scrollTo(0, 0);
             } else {
                 errorText.style.display = "block";
                 inputs.forEach(input => input.value = "");
