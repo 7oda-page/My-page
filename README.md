@@ -1,227 +1,226 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ömrüm</title>
-  <style>
-‎    /* خلفية متحركة بتدرج ألوان كرياتيف  */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #ffffff;
-      min-height: 100vh;
-      background: linear-gradient(-45deg, #ff758c, #ff7eb3, #2b5876, #4e4376);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <style>
+        /* خلفية تدرج ألوان متحركة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+        }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-‎    /* نمط التصميم الزجاجي Glassmorphism */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
+        /* حاوية الصفحات */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            text-align: center;
+            box-sizing: border-box;
+        }
 
-‎    /* الصفحة الأولى: شاشة القفل */
-    #lock-screen {
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      animation: fadeIn 0.8s ease-in-out;
-    }
+        /* الصفحة الأولى: كلمة السر */
+        #password-page {
+            display: block;
+        }
 
-    .pass-input {
-      width: 80%;
-      padding: 14px;
-      margin: 15px 0;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 18px;
-      text-align: center;
-      outline: none;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s ease;
-    }
+        /* الصفحة الثانية: المحتوى (مخفية افتراضياً) */
+        #content-page {
+            display: none;
+        }
 
-    .pass-input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
+        h1, h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
 
-    .pass-input:focus {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: #ffffff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
+        .input-field {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+            transition: 0.3s;
+        }
 
-    .btn-submit {
-      width: 85%;
-      padding: 12px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
-      transition: transform 0.2s ease;
-    }
+        .input-field:focus {
+            border-color: #e73c7e;
+        }
 
-    .btn-submit:active {
-      transform: scale(0.98);
-    }
+        .enter-btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 85%;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
 
-    #error-msg {
-      color: #ff3366;
-      font-size: 14px;
-      margin-top: 12px;
-      display: none;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 8px;
-      border-radius: 8px;
-    }
+        .enter-btn:hover {
+            transform: scale(1.03);
+            background-color: #e63956;
+        }
 
-‎    /* الصفحة الثانية: المحتوى الرئيسي */
-    #main-content {
-      display: none;
-      width: 90%;
-      max-width: 500px;
-      padding: 20px 0;
-      animation: fadeIn 1s ease-in-out;
-    }
+        .error-msg {
+            color: #d9534f;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+            font-weight: bold;
+        }
 
-    .note-box {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: center;
-      font-weight: 500;
-    }
+        .note {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 15px;
+            border-right: 4px solid #ff4d6d;
+        }
 
-‎    /* معرض الصور - 4 صور */
-    .image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 15px 0;
-    }
+        .section-title {
+            color: #ff4d6d;
+            font-size: 18px;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
 
-    .image-grid img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: transform 0.3s ease;
-    }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
 
-    .image-grid img:hover {
-      transform: scale(1.03);
-    }
+        .card img, .card video {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+        }
 
-    video, audio {
-      width: 100%;
-      border-radius: 12px;
-      outline: none;
-    }
-
-    .section-title {
-      font-size: 18px;
-      margin-bottom: 12px;
-      text-align: center;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <div id="lock-screen" class="glass-card">
-    <h2>Password code</h2>
-    <input type="password" id="passInput" class="pass-input" placeholder="كلمة السر هنا...">
-    <br>
-    <button class="btn-submit" onclick="checkPassword()">Enter..</button>
-    <div id="error-msg">❌ المعلومات دي مش صح! جربي تاني يا حلوة 😉</div>
-  </div>
+    <div class="container">
+        
+        <!-- ================= الصفحة الأولى (كلمة السر) ================= -->
+        <div id="password-page">
+            <h1>My-page</h1>
+            <h2>Password code</h2>
+            
+            <!-- خانة ادخال كلمة السر -->
+            <input type="password" id="passInput" class="input-field" placeholder="أدخل كلمة السر هنا...">
+            <br>
+            <button class="enter-btn" onclick="checkPassword()">Enter</button>
+            
+            <p id="errorText" class="error-msg">❌ كلمة السر غير صحيحة، حاول مرة أخرى!</p>
 
-  <div id="main-content">
-    
-    <div class="glass-card note-box">
-‎      📝 **ملاحظة أولى:** كتبتلك الكلام ده عشان أفكّرك دايماً إنك أجمل حاجة حصلت في حياتي.. بحبك أوي ❤️
+            <div class="note">
+                🥖 <b>ملاحظة أولى:</b> كتبتلك الكلام ده عشان أفتكرك دايماً إنك أجمل حاجة حصلت في حياتي.. بحبك أوي ❤️
+            </div>
+        </div>
+
+        <!-- ================= الصفحة الثانية (المحتوى الخاص) ================= -->
+        <div id="content-page">
+            <div class="section-title">🔒❤️ Our Beautiful memories</div>
+
+            <!-- الصور -->
+            <div class="card">
+                <h3>صورة 1</h3>
+                <img src="F1.JPG" alt="صورة 1">
+            </div>
+
+            <div class="card">
+                <h3>صورة 2</h3>
+                <img src="F2.jpg" alt="صورة 2">
+            </div>
+
+            <div class="card">
+                <h3>صورة 3</h3>
+                <img src="F3.jpg" alt="صورة 3">
+            </div>
+
+            <div class="card">
+                <h3>صورة 4</h3>
+                <img src="F4.jpg" alt="صورة 4">
+            </div>
+
+            <!-- الفيديو -->
+            <div class="section-title">🖤 Special video</div>
+            <div class="card">
+                <video controls>
+                    <source src="V1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- الصوت -->
+            <div class="section-title">🎼 The best song</div>
+            <div class="card">
+                <audio controls>
+                    <source src="S1.mp3" type="audio/mpeg">
+                </audio>
+                <div class="note">
+                    ❤️ <b>ملاحظة إضافية:</b> كل ما أسمع الأغنية دي بفكرك كل لحظة حلوة جمعتنا.. ربنا يديمك في حياتي يا رب 🥳
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="glass-card">
-      <div class="section-title">Our Beautiful memories ❤️🔐</div>
-      <div class="image-grid">
-        <img src="F1.jpg" alt="صورة 1">
-        <img src="F2.jpg" alt="صورة 2">
-        <img src="F3.jpg" alt="صورة 3">
-        <img src="F4.jpg" alt="صورة 4">
-      </div>
-    </div>
+    <!-- برمجة التحقق من كلمة السر -->
+    <script>
+        function checkPassword() {
+            // حدد كلمة السر المطلوبة هنا (مثلاً: 1234)
+            const correctPassword = "23122024"; 
+            
+            const userEntered = document.getElementById("passInput").value;
+            const errorText = document.getElementById("errorText");
 
-    <div class="glass-card">
-      <div class="section-title">Special video 🌚❤️</div>
-      <video controls poster="F1.jpg">
-        <source src="V1.mp4" type="video/mp4">
-‎        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
-    </div>
-
-    <div class="glass-card">
-      <div class="section-title">The best song 🎼</div>
-      <audio controls>
-        <source src="S1.mp3" type="audio/mpeg">
-‎        متصفحك لا يدعم تشغيل الصوت.
-      </audio>
-    </div>
-
-    <div class="glass-card note-box">
-‎      💌 **ملاحظة إضافية:** كل ما أسمع الأغنية دي بفتكر كل لحظة حلوة جمعتنا.. ربنا يديمك في حياتي يا رب 🥰
-    </div>
-
-  </div>
-
-  <script>
-    function checkPassword() {
-‎      // ضع كلمة السر المطلوبة هنا (23122024)
-      const correctPassword = "23122024"; 
-      const input = document.getElementById("passInput").value;
-      const errorMsg = document.getElementById("error-msg");
-
-      if (input === correctPassword) {
-        document.getElementById("lock-screen").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-      } else {
-        errorMsg.style.display = "block";
-      }
-    }
-  </script>
+            if (userEntered === correctPassword) {
+                // إذا كانت صحيحة: إخفاء صفحة الباسورد وإظهار صفحة المحتوى
+                document.getElementById("password-page").style.display = "none";
+                document.getElementById("content-page").style.display = "block";
+            } else {
+                // إذا كانت خطأ: إظهار رسالة الخطأ
+                errorText.style.display = "block";
+            }
+        }
+    </script>
 
 </body>
 </html>
