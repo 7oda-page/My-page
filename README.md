@@ -13,6 +13,12 @@
             padding: 0;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Tajawal', 'Segoe UI', sans-serif;
             min-height: 100vh;
@@ -20,8 +26,8 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            background-attachment: fixed;
             color: #fff;
-            overflow-x: hidden;
             position: relative;
             padding: 20px 10px;
         }
@@ -40,8 +46,8 @@
 
         .heart {
             position: absolute;
-            bottom: -60px;
-            animation: floatUp linear infinite;
+            bottom: -80px;
+            animation: floatAndSway linear infinite;
             pointer-events: none;
             user-select: none;
         }
@@ -50,25 +56,28 @@
             width: 100%;
             height: 100%;
             fill: none;
-            stroke: rgba(255, 255, 255, 0.7);
-            stroke-width: 2;
-            filter: drop-shadow(0px 0px 6px rgba(255, 105, 180, 0.5));
+            stroke: rgba(255, 255, 255, 0.85);
+            stroke-width: 2.5;
+            filter: drop-shadow(0px 0px 8px rgba(255, 105, 180, 0.6));
         }
 
-        /* حركة بطيئة وسلسة للقلوب */
-        @keyframes floatUp {
+        /* حركة القلوب الرأسية والأفقية العشوائية */
+        @keyframes floatAndSway {
             0% {
-                transform: translateY(0) scale(0.6) rotate(0deg);
+                transform: translateY(0) translateX(0) scale(0.8) rotate(0deg);
                 opacity: 0;
             }
             20% {
-                opacity: 0.8;
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(-60vh) translateX(35px) scale(1.1) rotate(90deg);
             }
             80% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(-115vh) scale(1.1) rotate(180deg);
+                transform: translateY(-120vh) translateX(-35px) scale(1.3) rotate(180deg);
                 opacity: 0;
             }
         }
@@ -164,14 +173,13 @@
             border-radius: 10px;
         }
 
-        /* تكبير خط الملاحظات بناءً على طلبك */
         .note {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 20px;
             border-radius: 18px;
-            font-size: 19px; /* تكبير الخط */
+            font-size: 19px;
             line-height: 1.7;
             margin: 20px auto;
             text-align: right;
@@ -225,7 +233,7 @@
         .slider-container::-webkit-scrollbar { display: none; }
 
         .card {
-            flex: 0 0 88%; /* إظهار طرف الصورة التالية للتنبيه بالسحب */
+            flex: 0 0 88%;
             scroll-snap-align: center;
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
@@ -306,14 +314,16 @@
 
             <div class="section-title">Our Beautiful Memories</div>
 
-            <!-- قسم الصور مع مؤشر السحب الجانبي -->
+            <!-- قسم الصور مع مؤشر السحب الجانبي (6 صور) -->
             <div class="slider-wrapper">
-                <div class="swipe-hint">👈 اسحبي الشاشات لرؤية باقي الصور 👉</div>
+                <div class="swipe-hint">⬅️⬅️ اسحبي لرؤية باقي الصور</div>
                 <div class="slider-container">
                     <div class="card"><img src="F1.JPG" alt="صورة 1"></div>
                     <div class="card"><img src="F2.JPG" alt="صورة 2"></div>
                     <div class="card"><img src="F3.JPG" alt="صورة 3"></div>
                     <div class="card"><img src="F4.JPG" alt="صورة 4"></div>
+                    <div class="card"><img src="F5.JPG" alt="صورة 5"></div>
+                    <div class="card"><img src="F6.JPG" alt="صورة 6"></div>
                 </div>
             </div>
 
@@ -344,18 +354,19 @@
     </div>
 
     <script>
-        // 1. القلوب البطئية في الخلفية
+        // 1. القلوب الكبيرة والمتحركة عشوائياً (أفقياً ورأسياً)
         const heartsContainer = document.getElementById('hearts-container');
-        const heartCount = 20;
+        const heartCount = 22;
 
         for (let i = 0; i < heartCount; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             
-            const size = Math.floor(Math.random() * 20) + 18; 
+            // أحجام أكبر للقلوب (بين 28px إلى 48px)
+            const size = Math.floor(Math.random() * 20) + 28; 
             const left = Math.random() * 95; 
-            const duration = Math.random() * 6 + 10; // حركة بطيئة جدًا بين 10 إلى 16 ثانية
-            const delay = Math.random() * 6; 
+            const duration = Math.random() * 5 + 8; // سرعة متوازنة
+            const delay = Math.random() * 5; 
 
             heart.style.left = `${left}%`;
             heart.style.width = `${size}px`;
@@ -386,7 +397,6 @@
                 if (e.key === "Backspace" && input.value === "" && index > 0) {
                     inputs[index - 1].focus();
                 }
-                // الضغط على Enter للانتقال
                 if (e.key === "Enter") {
                     checkPassword();
                 }
